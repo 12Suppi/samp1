@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+// Base class for arithmetic operations
+class Arithmetic {
+public:
+ int add(int a, int b) {
+ return a + b;
+ }
+ int subtract(int a, int b) {
+ return a - b;
+ }
+};
+// Derived class for multiplication
+class Multiplication {
+public:
+ int multiply(int a, int b) {
+ return a * b;
+ }
+};
+// Derived class for division
+class Division {
+public:
+ float divide(float a, float b) {
+ return a / b;
+ };
+// Derived class that inherits from Arithmetic, Multiplication, and Division
+class Calculator : public Arithmetic, public Multiplication, public Division {
+public:
+ void performOperations(int a, int b) {
+ cout << "Addition: " << add(a, b) << endl;
+ cout << "Subtraction: " << subtract(a, b) << endl;
+ cout << "Multiplication: " << multiply(a, b) << endl;
+ cout << "Division: " << divide(a, b) << endl;
+ }
+};
+int main() {
+ int num1, num2;
+ cout << "Enter two numbers: ";
+ cin >> num1 >> num2;
+ Calculator calculator;
+ calculator.performOperations(num1, num2);
+ return 0;
