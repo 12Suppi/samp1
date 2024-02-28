@@ -1,0 +1,28 @@
+include <iostream>
+#include <fstream>
+using namespace std;
+int main() {
+// Creating and opening a file
+ofstream outfile("example.txt");
+// Checking if file was created successfully
+if (outfile) {
+cout << "File created successfully!" << std::endl;
+// Writing some text into the file
+outfile << "Hello, world!";
+outfile.close();
+// Reading the text from the file
+ifstream infile("example.txt");
+string line;
+if (infile) {
+cout << "File opened successfully!" << endl;
+// Reading the text line by line
+while (getline(infile, line)) {
+cout << line << endl;
+}
+infile.close();
+} else {
+cout << "Error opening file!" << std::endl;
+} } else {
+cout << "Error creating file!" << std::endl; 
+}
+return 0;}
