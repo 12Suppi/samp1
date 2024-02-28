@@ -1,0 +1,47 @@
+#include <iostream>
+#include <fstream>
+#include <ctime>
+using namespace std;
+void writeTimeToFile(const string& fileName) {
+// Open the file in binary mode for writing
+ofstream file(fileName, ios::binary);
+if (file.is_open()) {
+// Get the current time
+time_t currentTime = time(nullptr);
+// Write the time to the file
+file.write((char*)&currentTime, sizeof(time_t));
+// Close the file
+file.close();
+cout << "Time has been written to the file." << endl;
+} else {
+cout << "Failed to open the file for writing." << endl;
+} }
+void readTimeFromFile(const string& fileName) {
+// Open the file in binary mode for reading
+ifstream file(fileName, ios::binary);
+if (file.is_open()) {
+// Read the time from the file
+time_t storedTime;
+file.read((char*)&storedTime, sizeof(time_t));
+// Check if reading was successful
+if(file)
+{
+string timeString = ctime(&storedTime);
+cout << "Time read from the file: " << timeString << endl;
+} else {
+cout << "Failed to read the time from the file." << endl;
+}
+// Close the file
+file.close();
+} else {
+cout << "Failed to open the file for reading." << endl;
+}
+}
+int main() {
+string fileName = "time.bin";
+// Write the current time to the file
+writeTimeToFile(fileName);
+// Read and display the time from the file
+readTimeFromFile(fileName);
+return 0;
+}
